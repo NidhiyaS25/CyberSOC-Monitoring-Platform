@@ -1,18 +1,11 @@
+import os
+
 def read_firewall_logs():
 
-    logs = []
+    if not os.path.exists("logs/firewall.log"):
+        return ["No firewall log available."]
 
     with open("logs/firewall.log", "r") as file:
-
-        for line in file:
-
-            parts = line.strip().split()
-
-            logs.append({
-                "date": parts[0],
-                "time": parts[1],
-                "action": parts[2],
-                "ip": parts[3]
-            })
+        logs = file.readlines()
 
     return logs

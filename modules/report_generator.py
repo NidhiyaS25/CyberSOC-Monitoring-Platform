@@ -1,34 +1,30 @@
-from datetime import datetime
-from modules.siem_dashboard import get_siem_data
-from modules.alerts import generate_alerts
-
+import os
 
 def generate_report():
 
-    data = get_siem_data()
-    alerts = generate_alerts()
-
     report = ""
 
-    report += "CyberSecurity Monitoring Report\n"
-    report += "=" * 45 + "\n\n"
+    files = [
+        "logs/nmap_scan.txt",
+        "logs/traffic_log.txt",
+        "logs/firewall.log",
+        "logs/phishing_log.txt"
+    ]
 
-    report += f"Generated: {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}\n\n"
+    for filename in files:
 
-    report += "NETWORK SUMMARY\n"
-    report += "-" * 45 + "\n"
-    report += f"Hosts Scanned : {data['hosts']}\n"
-    report += f"Open Ports    : {data['ports']}\n"
-    report += f"Firewall Logs : {data['firewall']}\n"
-    report += f"Alerts        : {data['alerts']}\n\n"
+        report += "=" * 60 + "\n"
+        report += filename + "\n"
+        report += "=" * 60 + "\n"
 
-    report += "SECURITY ALERTS\n"
-    report += "-" * 45 + "\n"
+        if os.path.exists(filename):
 
-    if alerts:
-        for alert in alerts:
-            report += f"[{alert['severity']}] {alert['module']} - {alert['message']}\n"
-    else:
-        report += "No alerts generated.\n"
+            with open(filename, "r") as file:
+                report += file.read()
+
+        else:
+            report += "File not available.\n"
+
+        report += "\n\n"
 
     return report

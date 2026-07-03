@@ -1,20 +1,24 @@
 import subprocess
+import shutil
+import os
 
 def run_scan(target):
-    """
-    Runs an Nmap service detection scan on the target IP.
-    Returns the scan results as text.
-    """
 
-    command = ["nmap", "-sV", target]
+    if shutil.which("nmap") is None:
+        return "Nmap is not available on this server. This feature works only in the local Kali environment."
 
-    result = subprocess.run(
-        command,
-        capture_output=True,
-        text=True
-    )
+    try:
+        result = subprocess.check_output(
+            ["nmap", "-F", target],
+            text=True
+        )
 
-    with open("logs/nmap_scan.txt", "w") as file:
-        file.write(result.stdout)
+        os.makedirs("logs", exist_ok=True)
 
-    return result.stdout
+        with open("logs/nmap_scan.txt", "w") as file:
+            file.write(result)
+
+        return result
+
+    except Exception as e:
+        return f"Error: {e}"

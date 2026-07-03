@@ -1,33 +1,44 @@
 from scapy.all import sniff
 from datetime import datetime
+import os
 
 def capture_packets():
 
-    packets = sniff(count=7)
+    try:
 
-    output = ""
+        packets = sniff(count=7)
 
-    for packet in packets:
+        output = ""
 
-        if packet.haslayer("IP"):
+        for packet in packets:
 
-            time = datetime.now().strftime("%H:%M:%S")
+            if packet.haslayer("IP"):
 
-            src = packet["IP"].src
-            dst = packet["IP"].dst
+                time = datetime.now().strftime("%H:%M:%S")
 
-            if packet.haslayer("TCP"):
-                protocol = "TCP"
-            elif packet.haslayer("UDP"):
-                protocol = "UDP"
-            elif packet.haslayer("ICMP"):
-                protocol = "ICMP"
-            else:
-                protocol = "IP"
+                src = packet["IP"].src
+                dst = packet["IP"].dst
 
-            output += f"{time:<10} {src:<18} {dst:<18} {protocol}\n"
+                if packet.haslayer("TCP"):
+                    protocol = "TCP"
+                elif packet.haslayer("UDP"):
+                    protocol = "UDP"
+                elif packet.haslayer("ICMP"):
+                    protocol = "ICMP"
+                else:
+                    protocol = "IP"
 
-    with open("logs/traffic_log.txt", "w") as file:
-        file.write(output)
+                output += f"{time:<10} {src:<18} {dst:<18} {protocol}\n"
 
-    return output
+        os.makedirs("logs", exist_ok=True)
+
+        with open("logs/traffic_log.txt", "w") as file:
+            file.write(output)
+
+        return output
+
+    except PermissionError:
+        return "Packet capture requires administrator/root privileges. This feature is available only in the local Kali environment."
+
+    except Exception as e:
+        return f"Error: {e}"

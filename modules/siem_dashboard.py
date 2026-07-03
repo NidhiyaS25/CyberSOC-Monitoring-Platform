@@ -1,38 +1,19 @@
-from modules.alerts import generate_alerts
+import os
+
 def get_siem_data():
 
-    hosts = 0
-    ports = 0
+    firewall = 0
+    alerts = 0
 
-    try:
-        with open("logs/nmap_scan.txt", "r") as file:
-
-            content = file.readlines()
-
-            for line in content:
-
-                if "Nmap scan report for" in line:
-                    hosts += 1
-
-                if "/tcp" in line and "open" in line:
-                    ports += 1
-
-    except FileNotFoundError:
-        pass
-
-    try:
+    if os.path.exists("logs/firewall.log"):
         with open("logs/firewall.log", "r") as file:
             firewall = len(file.readlines())
-    except FileNotFoundError:
-        firewall = 0
 
-    alerts = generate_alerts()
+    if os.path.exists("logs/alerts.txt"):
+        with open("logs/alerts.txt", "r") as file:
+            alerts = len(file.readlines())
 
-    data = {
-        "hosts": hosts,
-        "ports": ports,
-        "alerts": len(alerts),
-        "firewall": firewall
+    return {
+        "firewall": firewall,
+        "alerts": alerts
     }
-
-    return data
