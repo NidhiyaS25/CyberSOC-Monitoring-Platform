@@ -1,8 +1,11 @@
-Risk Level: MEDIUM
+Risk Level: HIGH
 
 Email Findings:
+- urgent
+- verify
+- click here
+- bank
+- password
+- login now
 
 URL Findings:
-- Uses HTTP
-- Uses IP Address
-- Contains "login"
