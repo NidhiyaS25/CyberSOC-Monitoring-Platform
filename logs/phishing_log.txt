@@ -1,0 +1,8 @@
+Risk Level: MEDIUM
+
+Email Findings:
+
+URL Findings:
+- Uses HTTP
+- Uses IP Address
+- Contains "login"

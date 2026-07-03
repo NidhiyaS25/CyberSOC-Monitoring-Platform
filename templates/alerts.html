@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="fw-bold">
+    <i class="bi bi-exclamation-triangle-fill"></i>
+    Security Alerts
+</h2>
+
+<p class="text-secondary">
+    Alerts generated from your cybersecurity modules.
+</p>
+
+<hr>
+
+<table class="table table-striped table-bordered">
+
+    <thead class="table-dark">
+
+        <tr>
+            <th>Severity</th>
+            <th>Module</th>
+            <th>Alert</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% if alerts %}
+
+        {% for alert in alerts %}
+
+        <tr>
+
+            <td>
+
+                {% if alert.severity == "HIGH" %}
+                    <span class="badge bg-danger">HIGH</span>
+
+                {% elif alert.severity == "MEDIUM" %}
+                    <span class="badge bg-warning text-dark">MEDIUM</span>
+
+                {% else %}
+                    <span class="badge bg-success">LOW</span>
+
+                {% endif %}
+
+            </td>
+
+            <td>{{ alert.module }}</td>
+
+            <td>{{ alert.message }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    {% else %}
+
+        <tr>
+            <td colspan="3" class="text-center">
+                No alerts found.
+            </td>
+        </tr>
+
+    {% endif %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

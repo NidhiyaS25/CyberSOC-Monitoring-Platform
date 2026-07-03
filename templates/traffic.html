@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="fw-bold">
+    <i class="bi bi-activity"></i>
+    Traffic Monitor
+</h2>
+
+<p class="text-secondary">
+    Capture live network packets.
+</p>
+
+<hr>
+
+<form method="POST">
+
+    <button
+        type="submit"
+        class="btn btn-success">
+        Start Capture
+    </button>
+
+</form>
+
+<hr>
+
+<h4>Captured Packets</h4>
+
+<pre>
+Time       Source IP          Destination IP     Protocol
+---------------------------------------------------------
+{{ result }}
+</pre>
+{% endblock %}

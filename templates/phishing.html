@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="fw-bold">
+    <i class="bi bi-envelope-exclamation-fill"></i>
+    Phishing Detection
+</h2>
+
+<p class="text-secondary">
+    Analyze suspicious email content and URLs.
+</p>
+
+<hr>
+
+<form method="POST">
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Email Content
+        </label>
+
+        <textarea
+            class="form-control"
+            rows="8"
+            name="email"
+            placeholder="Paste suspicious email here..."></textarea>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Suspicious URL
+        </label>
+
+        <input
+            type="text"
+            class="form-control"
+            name="url"
+            placeholder="https://example.com">
+
+    </div>
+
+    <button
+        type="submit"
+        class="btn btn-warning">
+
+        <i class="bi bi-search"></i>
+        Scan
+
+    </button>
+
+</form>
+
+<hr>
+
+{% if risk %}
+
+<h4>Risk Level</h4>
+
+{% if risk == "HIGH" %}
+<div class="alert alert-danger">
+    <strong>🔴 HIGH RISK</strong>
+</div>
+{% elif risk == "MEDIUM" %}
+<div class="alert alert-warning">
+    <strong>🟡 MEDIUM RISK</strong>
+</div>
+{% else %}
+<div class="alert alert-success">
+    <strong>🟢 LOW RISK</strong>
+</div>
+{% endif %}
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <h5>Email Findings</h5>
+
+        <ul>
+
+        {% for word in email_keywords %}
+            <li>{{ word }}</li>
+        {% endfor %}
+
+        </ul>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <h5>URL Findings</h5>
+
+        <ul>
+
+        {% for item in url_findings %}
+            <li>{{ item }}</li>
+        {% endfor %}
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

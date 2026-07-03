@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="fw-bold">
+    <i class="bi bi-file-earmark-text-fill"></i>
+    Reports
+</h2>
+
+<p class="text-secondary">
+    Generate a cybersecurity monitoring report.
+</p>
+
+<hr>
+
+<form method="POST">
+
+    <button
+        type="submit"
+        name="action"
+        value="generate"
+        class="btn btn-success">
+
+        <i class="bi bi-file-earmark-text-fill"></i>
+        Generate Report
+
+    </button>
+
+    <button
+        type="submit"
+        name="action"
+        value="download"
+        class="btn btn-primary ms-2">
+
+        <i class="bi bi-download"></i>
+        Download PDF
+
+    </button>
+
+</form>
+
+<hr>
+
+{% if report %}
+
+<h4>Generated Report</h4>
+
+<pre class="border rounded p-3 bg-white text-dark">
+{{ report }}
+</pre>
+
+
+{% endif %}
+
+{% endblock %}

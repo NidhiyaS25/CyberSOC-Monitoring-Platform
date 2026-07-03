@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="fw-bold">
+    <i class="bi bi-broadcast"></i>
+    Network Scan
+</h2>
+
+<p class="text-secondary">
+    Scan a target machine using Nmap.
+</p>
+
+<hr>
+
+<form method="POST">
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Target IP Address
+        </label>
+
+        <input
+            type="text"
+            class="form-control"
+            name="target"
+            placeholder="192.168.56.101"
+            value="{{ target}}"
+            required>
+
+    </div>
+
+    <button
+        type="submit"
+        class="btn btn-primary">
+        Start Scan
+    </button>
+
+</form>
+
+<hr>
+
+<h4>Results</h4>
+
+<pre>{{ result }}</pre>
+
+{% endblock %}
