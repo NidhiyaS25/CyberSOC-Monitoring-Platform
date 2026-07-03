@@ -120,73 +120,72 @@ Generates a PDF security report summarizing the collected information.
 
 ---
 
-# 📸 Screenshots
 
 # 📸 Screenshots
 
 ## Dashboard
 
 ### Main Dashboard
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshot/dashboard.png)
 
 ### Dashboard - Module Status & Recent Activity
-![Dashboard Bottom](screenshots/dashboard(bottom).png)
+![Dashboard Bottom](screenshot/dashboard(bottom).png)
 
 ---
 
 ## Network Scanner
 
-![Network Scanner](screenshots/network_scan.png)
+![Network Scanner](screenshot/network_scan.png)
 
 ---
 
 ## Traffic Monitor
 
-![Traffic Monitor](screenshots/traffic.png)
+![Traffic Monitor](screenshot/traffic.png)
 
 ---
 
 ## Firewall Log Analysis
 
-![Firewall Logs](screenshots/firewall.png)
+![Firewall Logs](screenshot/firewall.png)
 
 ---
 
 ## Phishing Detection
 
 ### Phishing Detection - Input
-![Phishing Input](screenshots/phishing(up).png)
+![Phishing Input](screenshot/phishing(up).png)
 
 ### Phishing Detection - Result
-![Phishing Result](screenshots/phishing(bottom).png)
+![Phishing Result](screenshot/phishing(bottom).png)
 
 ---
 
 ## Alerts
 
-![Alerts](screenshots/alerts.png)
+![Alerts](screenshot/alerts.png)
 
 ---
 
 ## SIEM Dashboard
 
-![SIEM Dashboard](screenshots/siem.png)
+![SIEM Dashboard](screenshot/siem.png)
 
 ---
 
 ## Reports
 
-![Reports](screenshots/reports.png)
+![Reports](screenshot/reports.png)
 
 ---
 
 ## Generated PDF Report
 
 ### PDF Report - Page 1
-![PDF Top](screenshots/pdf(up).png)
+![PDF Top](screenshot/pdf(up).png)
 
 ### PDF Report - Page 2
-![PDF Bottom](screenshots/pdf(bottom).png)
+![PDF Bottom](screenshot/pdf(bottom).png)
 
 ---
 
